@@ -1,0 +1,59 @@
+---
+title: "转移到hugo"
+date: 2020-08-26T17:06:33+08:00
+draft: false
+---
+
+介于hexo框架太麻烦了，要安装nodejs，又要安装各种包，实在是难同步。由于电脑前段时间崩了，重新搭建hexo环境总是失败，实在浪费了很多时间，于是决定迁移到hugo。
+
+在mac搭建hugo环境非常简单，只需要用homebrew即可安装
+```shell
+brew install hugo
+```
+这就算安装好hugo了，初始化新的hugo站点则至于要在任意路径下执行，再将主题放到theme中，我这里用的是yihui的[hugo-ivy](https://github.com/yihui/hugo-ivy)进行的修改，除了[yihui](https://yihui.org)的字体好像经过优化了，其他基本类似.
+```shell
+hugo new site </path/to/site>
+git clone https://github.com/yihui/hugo-ivy themes/hugo-ivy
+```
+yihui的主题可以很好的支持行间公式(双美元符`$$`)，但是不能支持行内公式(单美元符`$`)，于是从[这里](https://note.qidong.name/2018/03/hugo-mathjax)中找到解决方案，即在`layouts/partials/mathjax.html`中加入：
+```html
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    // Fix <code> tags after MathJax finishes running. This is a
+    // hack to overcome a shortcoming of Markdown. Discussion at
+    // https://github.com/mojombo/jekyll/issues/199
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+```
+最后在`partials/header_custom.html`中加入
+```html
+{{ partials "mathjax.html" }}
+```
