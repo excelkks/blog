@@ -88,4 +88,4 @@ git commit -m "comment"
 git push
 ```
 
-为了简化部署步骤，我写了一个[脚本](https://https://raw.githubusercontent.com/excelkks/blog/master/deploy.py)将部署、推送步骤合并
+为了简化部署步骤，我写了一个[脚本](https://raw.githubusercontent.com/excelkks/blog/master/deploy.py)将部署、推送步骤合并
