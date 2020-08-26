@@ -4,7 +4,7 @@ date: 2020-08-26T17:06:33+08:00
 draft: false
 ---
 
-# 博客环境搭建
+## 博客环境搭建
 
 介于hexo框架太麻烦了，要安装nodejs，又要安装各种包，实在是难同步。由于电脑前段时间崩了，重新搭建hexo环境总是失败，实在浪费了很多时间，于是决定迁移到hugo。
 
@@ -60,6 +60,32 @@ code.has-jax {
 {{ partials "mathjax.html" }}
 ```
 
-# 博客部署
+## 博客部署
 
+首先在github上创建部署文件仓库excelkks.github.io，再在github上创建一个仓库blog用于存放源文件。
 
+在hugo站点的路径blog下把hugo站点使用版本控制
+```shell
+cd blog
+git init
+```
+
+最后在站点目录下添加子仓库excelkks.github.io
+```shell
+git submodule add https://github.com/excelkks/excelkks.github.io
+```
+
+最后进行部署，1.在blog站点下生成部署文件到excelkks.github.io，2.推送子仓库excelkks.github.io，3.推送站点源文件仓库blog
+```shell
+hugo -d excelkks.github.io
+cd excelkks.github.io
+git add .
+git commit -m "comment"
+git push
+cd ..
+git add .
+git commit -m "comment"
+git push
+```
+
+为了简化部署步骤，我写了一个[脚本](https://https://raw.githubusercontent.com/excelkks/blog/master/deploy.py)将部署、推送步骤合并
