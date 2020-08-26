@@ -4,6 +4,8 @@ date: 2020-08-26T17:06:33+08:00
 draft: false
 ---
 
+# 博客环境搭建
+
 介于hexo框架太麻烦了，要安装nodejs，又要安装各种包，实在是难同步。由于电脑前段时间崩了，重新搭建hexo环境总是失败，实在浪费了很多时间，于是决定迁移到hugo。
 
 在mac搭建hugo环境非常简单，只需要用homebrew即可安装
@@ -57,3 +59,7 @@ code.has-jax {
 ```html
 {{ partials "mathjax.html" }}
 ```
+
+# 博客部署
+
+
