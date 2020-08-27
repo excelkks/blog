@@ -8,8 +8,7 @@ ignoreFiles = ["\\.Rmd$", "_files$", "_cache$"]
 preserveTaxonomyNames = true
 footnotereturnlinkcontents = "↩"
 
-[permalinks]
-    post = "/post/:year/:month/:day/:slug/"
+[permalinks] post = "/post/:year/:month/:day/:slug/"
     note = "/note/:year/:month/:day/:slug/"
 
 [[menu.main]]
@@ -30,7 +29,7 @@ footnotereturnlinkcontents = "↩"
     weight = 4
 
 [params]
-    description = "do it and just waiting"
+    description = "just do it and waiting"
     footer = "&copy; [KKS](https://excelkks.github.io) 2020 | [Github](https://github.com/excelkks) | [E-Mail](mailto:excelkks@hotmail.com)"
     highlightjsVersion = "9.12.0"
     highlightjsCDN = "//cdn.bootcss.com"
