@@ -12,7 +12,7 @@ draft: false
 ```shell
 brew install hugo
 ```
-这就算安装好hugo了，初始化新的hugo站点则至于要在任意路径下执行，再将主题放到theme中，我这里用的是yihui的[hugo-ivy](https://github.com/yihui/hugo-ivy)进行的修改，除了[yihui](https://yihui.org)的字体好像经过优化了，其他基本类似.
+这就算安装好hugo了，初始化新的hugo站点则至于要在任意路径下执行，再将主题放到theme中，我这里用的是yihui的[hugo-ivy](https://github.com/yihui/hugo-ivy)进行的修改，~~除了[yihui](https://yihui.org)的字体好像经过优化了，其他基本类似~~.
 ```shell
 hugo new site </path/to/site>
 git clone https://github.com/yihui/hugo-ivy themes/hugo-ivy
@@ -59,6 +59,10 @@ code.has-jax {
 ```html
 {{ partials "mathjax.html" }}
 ```
+
+### 关于字体
+
+yihui源博客采用的是思源字体，需要在css中嵌入js，登录[adobe fonts](https://fonts.adobe.com)中搜索`Source Han Serif Simplified Chinese`，选中后点击`</> Add to Web Project`，之后根据提示将`<script>`嵌入`partials/header_custom.html`中。可参考[这篇](https://imjad.cn/archives/lab/how-to-introduce-source-han-fonts-into-web-pages-through-typekit/)博客。
 
 ## 博客部署
 
