@@ -38,6 +38,7 @@ footnotereturnlinkcontents = "↩"
     highlightjsTheme = "github"
     show_toc = true
     logo = "/images/favicon/favicon.png"
+    favicon = "/images/favicon/favicon.png"
     mathjax = true
     mathjaxEnableSingleDollar = true
 [blackfriday]
