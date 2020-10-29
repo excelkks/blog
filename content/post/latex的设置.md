@@ -1,7 +1,6 @@
 ---
 title: "LaTeX的设置"
 date: 2020-10-28T11:02:29+08:00
-draft: true
 tags:
 - LaTeX
 - 写作
