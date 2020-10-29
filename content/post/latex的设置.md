@@ -134,5 +134,8 @@ ctex设置了一些默认的字体集, 基本上是根据操作系统来设置�
 中文测试成功！
 
 \end{document}
+
+简体版本的lshort可以通过`texdoc lshort-zh-cn`来打开
+
 ```
 
