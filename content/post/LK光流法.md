@@ -12,29 +12,28 @@ categories:
 
 ### 1.1 超定方程组
 
+
 超定方程组是指方程的个数大于未知数个数的方程组，例如
 
+`
 $$
 \begin{bmatrix}
-a_{11} & a_{12} & a_{13} \\ 
-a_{21} & a_{22} & a_{23} \\ 
+a_{11} & a_{12} & a_{13} \\
+a_{21} & a_{22} & a_{23} \\
 ... & ... & ... \\
 a_{n1} & a_{n2} & a_{n3} \\
-\end{bmatrix}
-
-\times
-
+\end{bmatrix}\times
 \begin{bmatrix} 
 x_1 \\ x_2 \\ x_3 \\
-\end{bmatrix}
-
-= 
-
+\end{bmatrix} = 
 \begin{bmatrix} 
 b_1 \\ b_2 \\ ... \\ b_n \\
 \end{bmatrix}
 $$
-其中，$n>3$，将上述方程表示为$\boldsymbol{A}_{n\times3}x_{3\times 1}=b_{n\times 1}$，该方程不能按照一般的求解方法求解，但可以求的最小二乘法的解。
+`
+
+其中，$n>3$，将上述方程表示为$\boldsymbol{A}\_{n\times 3}x\_{3\times 1}=b\_{n\times 1}$，该方程不能按照一般的求解方法求解，但可以求的最小二乘法的解。
+
 
 先给出结论，该超定方程组的最小二乘解为：
 $$x=(\boldsymbol{A}^{T}\boldsymbol{A})^{-1}\boldsymbol{A}^{T}b$$
@@ -43,15 +42,18 @@ $$x=(\boldsymbol{A}^{T}\boldsymbol{A})^{-1}\boldsymbol{A}^{T}b$$
 对于无一般解的超定方程组$\boldsymbol{A}x=b$来说，假设$r=\boldsymbol{A}x -b$，使得$||r||^2_2=（\boldsymbol{A}x -b)^{T}(\boldsymbol{A}x -b)$的值最小的解即为最小二乘解。于是，问题转变为最小化$(\boldsymbol{A}x -b)^{T}(\boldsymbol{A}x -b)$，令
 $$J(x)=(\boldsymbol{A}x-b)^T(\boldsymbol{A}x-b)$$
 对上式求导，可得 
-$$
+
+`$$
 \begin{aligned}
 \frac{\partial J(x)}{\partial x} & =\frac{\partial{(\boldsymbol{A}x-b)^T(\boldsymbol{A}x-b)}}{\partial{x}} \\
 & =\frac{\partial(x^T\boldsymbol{A}^T\boldsymbol{A}x-x^T\boldsymbol{A}^Tb-b^T\boldsymbol{A}x+b^Tb)}{\partial{x}} \\
 & =(\boldsymbol{A}^T\boldsymbol{A}x)^T+x^T\boldsymbol{A}\boldsymbol{A}-b^T\boldsymbol{A}-b^T\boldsymbol{A} \\
 & =2(x^T\boldsymbol{A}^T\boldsymbol{A}-b^T\boldsymbol{A})
 \end{aligned}
-$$
+$$`
+
 令$\frac{\partial{J(x)}}{\partial{x}}=0$，那么，可以解得
+
 $$
 x=(\boldsymbol{A}^T\boldsymbol{A})^{-1}\boldsymbol{A}^Tb
 $$
@@ -66,12 +68,13 @@ Optical flow光流简单来说是描述物体的运动，可理解为运动向�
 - 相同像素点移动前后像素强度不变（一般指亮度）
 
 现假设在时间$t$时，点$(x,y)$处像素点强度为$I(x,y,t)$，那么$\Delta{t}$时间后，该像素点将移动到$(x+\Delta{x},y+\Delta{y})$处，像素强度为$I(x+\Delta{x},y+\Delta{y},t+\Delta{t})$，对其进行泰勒级数展开得到：
-$$
+
+`$$
 \begin{aligned}
     & I(x+\Delta{x},y+\Delta{y},t+\Delta{t}) \\
 = & I(x,y,t)+\frac{\partial{I}}{\partial{x}}\Delta{x}+\frac{\partial{I}}{\partial{y}}\Delta{y}+\frac{\partial{I}}{\partial{t}}\Delta{t}+H.O.T.
 \end{aligned}
-$$
+$$`
 
 基于假设条件，相同像素移动前后的强度不变，同时忽略$H.O.T$，可得：
 $$
@@ -94,16 +97,19 @@ $V_x$, $V_y$也即为$I(x,y,t)$的光流，$\frac{\partial{I}}{\partial{x}}$,$\f
 - 假设光流在像素点的邻域是一个常数
 
 那么，假设研究领域大小为$N\times{N}$，那么在该区域内的光流均相等，根据光流的计算方法，该区域内有等式：
-$$
+
+`$$
 \begin{aligned}
     & I_x(p_1)V_x+I_y(p_1)V_y = -I_t(p_1) \\
     & I_x(p_2)V_x+I_y(p_2)V_y = -I_t(p_2) \\
     & \cdots                              \\
     & I_x(p_n)V_x+I_y(p_n)V_y = -I_t(p_n)
 \end{aligned}
-$$
+$$`
+
 写成矩阵形式
-$$
+
+`$$
 \begin{bmatrix}
     I_x(p_1) & I_y(p_1) \\
     I_x(p_2) & I_y(p_2) \\
@@ -119,10 +125,10 @@ $$
     \cdots \\
     -I_t(p_n)
 \end{bmatrix}
-$$
+$$`
 
 根据最小二乘法求解超定方程$Ax=b$方法，$x=(\boldsymbol{A}^T\boldsymbol{A})^{-1}\boldsymbol{A}^Tb$，上述矩阵解为
-$$
+`$$
 \begin{bmatrix}
     V_x \\ V_y
 \end{bmatrix}
@@ -134,7 +140,7 @@ $$
     -\sum_iI_x(p_i)I_t(p_i) \\
     -\sum_iI_y(p_i)I_t(p_i)
 \end{bmatrix}
-$$
+$$`
 
 最终求的该区域内的光流为$V_x,V_y$。
 
