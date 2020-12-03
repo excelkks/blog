@@ -17,16 +17,16 @@ categories:
 
 
 $$
-\begin{bmatrix} a_{11} & a_{12} & a_{13} \\\\ 
-a_{21} & a_{22} & a_{23} \\\\
-... & ... & ... \\\\
+\begin{bmatrix} a_{11} & a_{12} & a_{13} \\ 
+a_{21} & a_{22} & a_{23} \\
+... & ... & ... \\
 a_{n1} & a_{n2} & a_{n3}
 \end{bmatrix} \times 
 \begin{bmatrix} 
-x_1 \\\\ x_2 \\\\ x_3 \\\\
+x_1 \\ x_2 \\ x_3 \\
 \end{bmatrix} = 
 \begin{bmatrix} 
-b_1 \\\\ b_2 \\\\ ... \\\\ b_n \\\\
+b_1 \\ b_2 \\ ... \\ b_n \\
 \end{bmatrix}
 $$
 
@@ -44,9 +44,9 @@ $$J(x)=(\boldsymbol{A}x-b)^T(\boldsymbol{A}x-b)$$
 
 $$
 \begin{aligned}
-\frac{\partial J(x)}{\partial x} & =\frac{\partial{(\boldsymbol{A}x-b)^T(\boldsymbol{A}x-b)}}{\partial{x}} \\\\
-& =\frac{\partial(x^T\boldsymbol{A}^T\boldsymbol{A}x-x^T\boldsymbol{A}^Tb-b^T\boldsymbol{A}x+b^Tb)}{\partial{x}} \\\\
-& =(\boldsymbol{A}^T\boldsymbol{A}x)^T+x^T\boldsymbol{A}\boldsymbol{A}-b^T\boldsymbol{A}-b^T\boldsymbol{A} \\\\
+\frac{\partial J(x)}{\partial x} & =\frac{\partial{(\boldsymbol{A}x-b)^T(\boldsymbol{A}x-b)}}{\partial{x}} \\
+& =\frac{\partial(x^T\boldsymbol{A}^T\boldsymbol{A}x-x^T\boldsymbol{A}^Tb-b^T\boldsymbol{A}x+b^Tb)}{\partial{x}} \\
+& =(\boldsymbol{A}^T\boldsymbol{A}x)^T+x^T\boldsymbol{A}\boldsymbol{A}-b^T\boldsymbol{A}-b^T\boldsymbol{A} \\
 & =2(x^T\boldsymbol{A}^T\boldsymbol{A}-b^T\boldsymbol{A})
 \end{aligned}
 $$
@@ -70,7 +70,7 @@ Optical flow光流简单来说是描述物体的运动，可理解为运动向�
 
 $$
 \begin{aligned}
-    & I(x+\Delta{x},y+\Delta{y},t+\Delta{t}) \\\\
+    & I(x+\Delta{x},y+\Delta{y},t+\Delta{t}) \\
 = & I(x,y,t)+\frac{\partial{I}}{\partial{x}}\Delta{x}+\frac{\partial{I}}{\partial{y}}\Delta{y}+\frac{\partial{I}}{\partial{t}}\Delta{t}+H.O.T.
 \end{aligned}
 $$
@@ -99,9 +99,9 @@ $V_x$, $V_y$也即为$I(x,y,t)$的光流，$\frac{\partial{I}}{\partial{x}}$,$\f
 
 $$
 \begin{aligned}
-    & I_x(p_1)V_x+I_y(p_1)V_y = -I_t(p_1) \\\\
-    & I_x(p_2)V_x+I_y(p_2)V_y = -I_t(p_2) \\\\
-    & \cdots                              \\\\
+    & I_x(p_1)V_x+I_y(p_1)V_y = -I_t(p_1) \\
+    & I_x(p_2)V_x+I_y(p_2)V_y = -I_t(p_2) \\
+    & \cdots                              \\
     & I_x(p_n)V_x+I_y(p_n)V_y = -I_t(p_n)
 \end{aligned}
 $$
@@ -110,18 +110,18 @@ $$
 
 $$
 \begin{bmatrix}
-    I_x(p_1) & I_y(p_1) \\\\
-    I_x(p_2) & I_y(p_2) \\\\
-    \cdots \\\\
+    I_x(p_1) & I_y(p_1) \\
+    I_x(p_2) & I_y(p_2) \\
+    \cdots \\
     I_x(p_n) & I_y(p_n)
 \end{bmatrix}
 \begin{bmatrix}
-    V_x \\\\ V_y
+    V_x \\ V_y
 \end{bmatrix}
 =\begin{bmatrix}
-    -I_t(p_1)\\\\
-    -I_t(p_2) \\\\
-    \cdots \\\\
+    -I_t(p_1)\\
+    -I_t(p_2) \\
+    \cdots \\
     -I_t(p_n)
 \end{bmatrix}
 $$
@@ -129,14 +129,14 @@ $$
 根据最小二乘法求解超定方程$Ax=b$方法，$x=(\boldsymbol{A}^T\boldsymbol{A})^{-1}\boldsymbol{A}^Tb$，上述矩阵解为
 $$
 \begin{bmatrix}
-    V_x \\\\ V_y
+    V_x \\ V_y
 \end{bmatrix}
 =\begin{bmatrix}
-    \sum_iI_x(p_i)^2 & \sum_iI_x(p_i)I_y(p_i) \\\\
-    \sum_iI_y(p_i)I_x(p_i) & \sum_iI_y(p_i)^2 \\\\
+    \sum_iI_x(p_i)^2 & \sum_iI_x(p_i)I_y(p_i) \\
+    \sum_iI_y(p_i)I_x(p_i) & \sum_iI_y(p_i)^2 \\
 \end{bmatrix}^{-1}
 \begin{bmatrix}
-    -\sum_iI_x(p_i)I_t(p_i) \\\\
+    -\sum_iI_x(p_i)I_t(p_i) \\
     -\sum_iI_y(p_i)I_t(p_i)
 \end{bmatrix}
 $$
