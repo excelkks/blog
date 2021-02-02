@@ -1,9 +1,10 @@
 ---
 title: "Jupyter Notebook"
 date: 2020-12-09T10:00:18+08:00
-draft: true
-tags:
-categories:
+draft: false
+tags: 
+- python
+categories: 
 ---
 
 
