@@ -31,7 +31,7 @@ cat /var/log/auth.log | awk '/refused/{print $(NF -1)}' | sort |uniq -c | awk '{
 
 ### 加入黑名单
 
-将3次登录失败的IP加入`/etc/hostd.deny`黑名单，禁止其通过sshd登录。这里没10分钟检查一次log文件。脚本文件`/scripts/host_block.sh`如下：
+将3次登录失败的IP加入`/etc/hostd.deny`黑名单，禁止其通过sshd登录。这里每10分钟检查一次log文件。脚本文件`/scripts/host_block.sh`如下：
 
 ```shell
 #!/bin/bash
