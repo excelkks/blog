@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>截断正态分布 - excelkks</title>
+    <meta property="og:title" content="截断正态分布 - excelkks">
+    
+    <meta name="twitter:card" content="summary">
+
+    
+      
+    
+
+    
+      
+      <meta property="description" content="要理解截断正态分布(truncated normal distribution)，需要先理解截断分布(truncated distribution)。所谓截断分布就是对原本分布中随机变量进行前后截断取值，在随机变量取值被改变的情况下，概率分布需要根据阶段的概率分布重新归一化到$[0,1]$。假设$X$的概率密度函数为$f(x)$，累计概率分布为$F(x)$，如果随机变量$X$的取值截断 &amp;hellip;">
+      <meta property="og:description" content="要理解截断正态分布(truncated normal distribution)，需要先理解截断分布(truncated distribution)。所谓截断分布就是对原本分布中随机变量进行前后截断取值，在随机变量取值被改变的情况下，概率分布需要根据阶段的概率分布重新归一化到$[0,1]$。假设$X$的概率密度函数为$f(x)$，累计概率分布为$F(x)$，如果随机变量$X$的取值截断 &amp;hellip;">
+      
+    
+
+    
+    
+
+    
+
+    
+    
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+<script>
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+<script>
+  (function(d) {
+    var config = {
+      kitId: 'hcr2dmn',
+      scriptTimeout: 3000,
+      async: true
+    },
+    h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+  })(document);
+</script>
+<link rel="icon" type="image/png" href="/images/favicon/favicon.png" />
+<link rel="shortcut icon" type="image/png" href="/images/favicon/favicon.png" />
+
+  </head>
+
+  
+  <body class="post">
+    <header class="masthead">
+      <h1><a href="/"><img src="/images/favicon/favicon.png" /></a></h1>
+
+<p class="tagline">just do it and waiting</p>
+
+      <nav class="menu">
+  <input id="menu-check" type="checkbox" hidden/>
+  <label id="menu-label" for="menu-check" class="unselectable" hidden>
+    <span class="icon close-icon">✕</span>
+    <span class="icon open-icon">☰</span>
+    <span class="text">Menu</span>
+  </label>
+  <ul>
+  
+  
+  <li><a href="/">主页</a></li>
+  
+  <li><a href="/about/">关于</a></li>
+  
+  <li><a href="/categories/">分类</a></li>
+  
+  <li><a href="/tags/">标签</a></li>
+  
+  
+  </ul>
+</nav>
+
+    </header>
+
+    <article class="main">
+      <header class="title">
+      
+<h1>截断正态分布</h1>
+
+<h3>
+  2020-12-18</h3>
+<hr>
+
+
+      </header>
+
+
+
+<h2 id="截断正态分布">截断正态分布</h2>
+<p>要理解截断正态分布(truncated normal distribution)，需要先理解截断分布(truncated distribution)。所谓截断分布就是对原本分布中随机变量进行前后截断取值，在随机变量取值被改变的情况下，概率分布需要根据阶段的概率分布重新归一化到$[0,1]$。假设$X$的概率密度函数为$f(x)$，累计概率分布为$F(x)$，如果随机变量$X$的取值截断为$[a,b]$，那么，截断后的概率密度函数应该为
+$$
+g(x;a,b) = \frac{f(x)}{F(b)-F(a)}
+$$
+接下来，截断正态分布就很好理解了，假设$X\sim N(\mu, \delta)$，则$X$的概率密度函数为$\frac{1}{\delta}\phi(x)$，累计概率分布函数为$\Phi(x)$，那么，$X$截断为$[a,b]$的概率密度分布函数为
+$$
+g(x;\mu,\delta,a,b) = \frac{\frac{1}{\delta}\phi(\frac{x-\mu}{\delta
+})}{\Phi(\frac{b-\mu}{\delta})-\Phi(\frac{a-\mu}{\delta})}
+$$
+其中，$\phi(x)$，$\Phi(x)$分别为标准正态分布的概率密度函数和累积概率函数
+$$
+\phi(x) =\frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}x^2}
+$$</p>
+<p>$$
+\Phi(x) = \int_{-\infty}^x \frac{1}{\sqrt{2\pi}}e^{-\frac{-t^2}{2}}dt
+$$</p>
+
+
+  <footer>
+  
+<nav class="post-nav">
+  <span class="nav-prev">&larr; <a href="/post/2020/12/18/pytorch-sequential/">Pytorch Sequential</a></span>
+  <span class="nav-next"><a href="/post/2020/12/18/projection/">Projection</a> &rarr;</span>
+</nav>
+
+
+
+
+
+<script src="//yihui.org/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script async src="//yihui.org/js/center-img.js"></script>
+
+  
+
+  
+  <hr>
+  <div class="copyright">© <a href="https://excelkks.github.io">KKS</a> 2020 | <a href="https://github.com/excelkks">Github</a> | <a href="mailto:excelkks@hotmail.com">E-Mail</a></div>
+  
+  </footer>
+  </article>
+  
+  </body>
+</html>
+
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+

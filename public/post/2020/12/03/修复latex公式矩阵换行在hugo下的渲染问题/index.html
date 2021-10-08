@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>修复latex公式矩阵换行在hugo下的渲染问题 - excelkks</title>
+    <meta property="og:title" content="修复latex公式矩阵换行在hugo下的渲染问题 - excelkks">
+    
+    <meta name="twitter:card" content="summary">
+
+    
+      
+    
+
+    
+      
+      <meta property="description" content="目前我已经从hexo迁移到hugo写博客，我个人非常喜欢hugo的轻快，但是还有一个非常困扰我的问题就是latex矩阵的渲染。我在hugo使用的渲染公式的方案是用mathjax，由于hugo解析backslash\先用mathjax，这就会导致公式中的double backslash\\（在latex中表现为换行）会被解析为single backslash，从而导致mathjax解析换行失败，最后 &amp;hellip;">
+      <meta property="og:description" content="目前我已经从hexo迁移到hugo写博客，我个人非常喜欢hugo的轻快，但是还有一个非常困扰我的问题就是latex矩阵的渲染。我在hugo使用的渲染公式的方案是用mathjax，由于hugo解析backslash\先用mathjax，这就会导致公式中的double backslash\\（在latex中表现为换行）会被解析为single backslash，从而导致mathjax解析换行失败，最后 &amp;hellip;">
+      
+    
+
+    
+    
+
+    
+
+    
+    
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+<script>
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+<script>
+  (function(d) {
+    var config = {
+      kitId: 'hcr2dmn',
+      scriptTimeout: 3000,
+      async: true
+    },
+    h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+  })(document);
+</script>
+<link rel="icon" type="image/png" href="/images/favicon/favicon.png" />
+<link rel="shortcut icon" type="image/png" href="/images/favicon/favicon.png" />
+
+  </head>
+
+  
+  <body class="post">
+    <header class="masthead">
+      <h1><a href="/"><img src="/images/favicon/favicon.png" /></a></h1>
+
+<p class="tagline">just do it and waiting</p>
+
+      <nav class="menu">
+  <input id="menu-check" type="checkbox" hidden/>
+  <label id="menu-label" for="menu-check" class="unselectable" hidden>
+    <span class="icon close-icon">✕</span>
+    <span class="icon open-icon">☰</span>
+    <span class="text">Menu</span>
+  </label>
+  <ul>
+  
+  
+  <li><a href="/">主页</a></li>
+  
+  <li><a href="/about/">关于</a></li>
+  
+  <li><a href="/categories/">分类</a></li>
+  
+  <li><a href="/tags/">标签</a></li>
+  
+  
+  </ul>
+</nav>
+
+    </header>
+
+    <article class="main">
+      <header class="title">
+      
+<h1>修复latex公式矩阵换行在hugo下的渲染问题</h1>
+
+<h3>
+  2020-12-03</h3>
+<hr>
+
+
+      </header>
+
+
+
+<p>目前我已经从hexo迁移到hugo写博客，我个人非常喜欢hugo的轻快，但是还有一个非常困扰我的问题就是latex矩阵的渲染。我在hugo使用的渲染公式的方案是用mathjax，由于hugo解析backslash<code>\</code>先用mathjax，这就会导致公式中的double backslash<code>\\</code>（在latex中表现为换行）会被解析为single backslash，从而导致mathjax解析换行失败，最后造成无法渲染矩阵。</p>
+<p>在网上搜了一圈后，普遍给出的方案都是把 double backslash 换为quadruple backslash<code>\\\\</code>，这样确实可以解决问题，但是问题也很明显，就是无法与其他的 Markdown 编辑器兼容，特别是我平时喜欢用 Tyopra 编辑markdown文件。</p>
+<p>我的最终方案是在hugo博客的根目录下建立一个data路径用于存放原始的markdown文件，平时的编辑，更改都在data/post路径下的mardown文件进行，写好后再用脚本将data/post文章的公式中的double backslash改为quadraple backslash后放入content/post中。这样平时只需要在data/post中编辑，编辑完后在用脚本renew一下就可以了。这应该是我能想到的最不折腾的方案了。</p>
+<p>我的写作流程基本上可以归结为如下：</p>
+<ol>
+<li><code>blog -n &quot;post title&quot;</code> 基于hugo的<code>hugo new post/post_title</code> 创建post并放到data/post路径下</li>
+<li>在data/post路径下写作</li>
+<li><code>blog -r</code> 更新所有post，即处理<code>\\</code></li>
+<li><code>blog -d &quot;comment&quot;</code> 提交到仓库，更新博客网站</li>
+</ol>
+
+
+  <footer>
+  
+<nav class="post-nav">
+  <span class="nav-prev">&larr; <a href="/post/2020/10/28/latex%E7%9A%84%E8%AE%BE%E7%BD%AE/">LaTeX的设置</a></span>
+  <span class="nav-next"><a href="/post/2020/12/03/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a> &rarr;</span>
+</nav>
+
+
+
+
+
+<script src="//yihui.org/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script async src="//yihui.org/js/center-img.js"></script>
+
+  
+
+  
+  <hr>
+  <div class="copyright">© <a href="https://excelkks.github.io">KKS</a> 2020 | <a href="https://github.com/excelkks">Github</a> | <a href="mailto:excelkks@hotmail.com">E-Mail</a></div>
+  
+  </footer>
+  </article>
+  
+  </body>
+</html>
+
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+

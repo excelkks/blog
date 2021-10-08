@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>os模块 - excelkks</title>
+    <meta property="og:title" content="os模块 - excelkks">
+    
+    <meta name="twitter:card" content="summary">
+
+    
+      
+    
+
+    
+      
+      <meta property="description" content="os.walk(path)用于遍历目录。返回值是一个遍历器，需要用for循环不断遍历，每次遍历得到长度为3的tuple，分别为(目录, [目录下的子目录], [目录下的文件])。 使用方法示例:
+[&amp;hellip;] for root, dirs, files in os.walk(&amp;#39;.&amp;#39;): for file in files: print(os.path.join(root, &amp;hellip;">
+      <meta property="og:description" content="os.walk(path)用于遍历目录。返回值是一个遍历器，需要用for循环不断遍历，每次遍历得到长度为3的tuple，分别为(目录, [目录下的子目录], [目录下的文件])。 使用方法示例:
+[&amp;hellip;] for root, dirs, files in os.walk(&amp;#39;.&amp;#39;): for file in files: print(os.path.join(root, &amp;hellip;">
+      
+    
+
+    
+    
+
+    
+
+    
+    
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+<script>
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+<script>
+  (function(d) {
+    var config = {
+      kitId: 'hcr2dmn',
+      scriptTimeout: 3000,
+      async: true
+    },
+    h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+  })(document);
+</script>
+<link rel="icon" type="image/png" href="/images/favicon/favicon.png" />
+<link rel="shortcut icon" type="image/png" href="/images/favicon/favicon.png" />
+
+  </head>
+
+  
+  <body class="post">
+    <header class="masthead">
+      <h1><a href="/"><img src="/images/favicon/favicon.png" /></a></h1>
+
+<p class="tagline">just do it and waiting</p>
+
+      <nav class="menu">
+  <input id="menu-check" type="checkbox" hidden/>
+  <label id="menu-label" for="menu-check" class="unselectable" hidden>
+    <span class="icon close-icon">✕</span>
+    <span class="icon open-icon">☰</span>
+    <span class="text">Menu</span>
+  </label>
+  <ul>
+  
+  
+  <li><a href="/">主页</a></li>
+  
+  <li><a href="/about/">关于</a></li>
+  
+  <li><a href="/categories/">分类</a></li>
+  
+  <li><a href="/tags/">标签</a></li>
+  
+  
+  </ul>
+</nav>
+
+    </header>
+
+    <article class="main">
+      <header class="title">
+      
+<h1>os模块</h1>
+
+<h3>
+  2020-12-11</h3>
+<hr>
+
+
+      </header>
+
+
+
+<h3 id="oswalk">os.walk</h3>
+<p><code>os.walk(path)</code>用于遍历目录。返回值是一个遍历器，需要用<code>for</code>循环不断遍历，每次遍历得到长度为3的tuple，分别为(目录, [目录下的子目录], [目录下的文件])。
+使用方法示例:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">for</span> root, dirs, files <span style="color:#f92672">in</span> os<span style="color:#f92672">.</span>walk(<span style="color:#e6db74">&#39;.&#39;</span>):
+    <span style="color:#66d9ef">for</span> file <span style="color:#f92672">in</span> files:
+        print(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(root, file))
+    <span style="color:#66d9ef">for</span> dir <span style="color:#f92672">in</span> dirs:
+        print(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(root, dir))
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">./directory_2
+./directory_1
+./directory_2/file_2_1
+./directory_2/directory_2_1
+./directory_2/directory_2_1/file_2_1_1
+./directory_1/directory_1_1
+./directory_1/directory_1_2
+./directory_1/directory_1_1/file_1_1_2
+./directory_1/directory_1_1/file_1_1_1
+./directory_1/directory_1_2/file_1_2_1
+</code></pre></div><h3 id="glob模块">glob模块</h3>
+<h4 id="globglob">glob.glob</h4>
+<p><code>glob.glob</code>用于以shell-style的方式匹配目录下的文件, 例如shell匹配所有jpg图片</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">*.jpg
+</code></pre></div><p>在python中用<code>glob.glob</code>的方式为</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">files <span style="color:#f92672">=</span> glob<span style="color:#f92672">.</span>glob(<span style="color:#e6db74">&#39;*.py&#39;</span>)
+</code></pre></div><h3 id="numpy模块">numpy模块</h3>
+<h4 id="randomget_state">random.get_state</h4>
+<p><code>numpy.random.get_state()</code>一般与<code>numpy.random.set_state()</code>和<code>numpy.random.shuffle()</code>一起使用，用于打乱numpy数组的顺序。例如打乱数据集</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">state <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>get_state()
+np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>shuffle(dataset_images)
+<span style="color:#75715e"># 保证打乱的顺序与之前一致</span>
+np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>set_state(state)
+np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>shuffle(dataset_labels)
+</code></pre></div>
+
+  <footer>
+  
+<nav class="post-nav">
+  <span class="nav-prev">&larr; <a href="/post/2020/12/09/jupyter-notebook/">Jupyter Notebook</a></span>
+  <span class="nav-next"><a href="/post/2020/12/18/pytorch%E5%9F%BA%E7%A1%80/">Pytorch基础</a> &rarr;</span>
+</nav>
+
+
+
+
+
+<script src="//yihui.org/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script async src="//yihui.org/js/center-img.js"></script>
+
+  
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/languages/tex.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/languages/c.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/languages/c&#43;&#43;.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/languages/python.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/languages/shell.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/languages/markdown.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+  
+  <hr>
+  <div class="copyright">© <a href="https://excelkks.github.io">KKS</a> 2020 | <a href="https://github.com/excelkks">Github</a> | <a href="mailto:excelkks@hotmail.com">E-Mail</a></div>
+  
+  </footer>
+  </article>
+  
+  </body>
+</html>
+
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+

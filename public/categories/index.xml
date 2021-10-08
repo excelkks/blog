@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>分类 on excelkks</title>
+    <link>/categories/</link>
+    <description>Recent content in 分类 on excelkks</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 18 Dec 2020 11:39:33 +0800</lastBuildDate><atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>pytorch</title>
+      <link>/categories/pytorch/</link>
+      <pubDate>Fri, 18 Dec 2020 11:39:33 +0800</pubDate>
+      
+      <guid>/categories/pytorch/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>写作</title>
+      <link>/categories/%E5%86%99%E4%BD%9C/</link>
+      <pubDate>Thu, 03 Dec 2020 14:13:46 +0800</pubDate>
+      
+      <guid>/categories/%E5%86%99%E4%BD%9C/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>LaTeX</title>
+      <link>/categories/latex/</link>
+      <pubDate>Wed, 28 Oct 2020 11:02:29 +0800</pubDate>
+      
+      <guid>/categories/latex/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>数据结构</title>
+      <link>/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
+      <pubDate>Mon, 16 Dec 2019 14:23:35 +0000</pubDate>
+      
+      <guid>/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>工具</title>
+      <link>/categories/%E5%B7%A5%E5%85%B7/</link>
+      <pubDate>Mon, 16 Dec 2019 11:09:38 +0000</pubDate>
+      
+      <guid>/categories/%E5%B7%A5%E5%85%B7/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>free internet</title>
+      <link>/categories/free-internet/</link>
+      <pubDate>Thu, 12 Dec 2019 10:39:51 +0000</pubDate>
+      
+      <guid>/categories/free-internet/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>视频编解码</title>
+      <link>/categories/%E8%A7%86%E9%A2%91%E7%BC%96%E8%A7%A3%E7%A0%81/</link>
+      <pubDate>Tue, 10 Dec 2019 19:09:17 +0000</pubDate>
+      
+      <guid>/categories/%E8%A7%86%E9%A2%91%E7%BC%96%E8%A7%A3%E7%A0%81/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>机器学习法</title>
+      <link>/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%B3%95/</link>
+      <pubDate>Tue, 10 Dec 2019 09:40:39 +0000</pubDate>
+      
+      <guid>/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%B3%95/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

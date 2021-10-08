@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>直接初始化和拷贝初始化 - excelkks</title>
+    <meta property="og:title" content="直接初始化和拷贝初始化 - excelkks">
+    
+    <meta name="twitter:card" content="summary">
+
+    
+      
+    
+
+    
+      
+      <meta property="description" content="拷贝初始化底层是先调用构造函数创建一个临时变量，再将临时变量通过拷贝构造函数创建新变量。考虑如下过程
+">
+      <meta property="og:description" content="拷贝初始化底层是先调用构造函数创建一个临时变量，再将临时变量通过拷贝构造函数创建新变量。考虑如下过程
+">
+      
+    
+
+    
+    
+
+    
+
+    
+    
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+<script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+<script>
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+<script>
+  (function(d) {
+    var config = {
+      kitId: 'hcr2dmn',
+      scriptTimeout: 3000,
+      async: true
+    },
+    h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+  })(document);
+</script>
+<link rel="icon" type="image/png" href="/images/favicon/favicon.png" />
+<link rel="shortcut icon" type="image/png" href="/images/favicon/favicon.png" />
+
+  </head>
+
+  
+  <body class="post">
+    <header class="masthead">
+      <h1><a href="/"><img src="/images/favicon/favicon.png" /></a></h1>
+
+<p class="tagline">just do it and waiting</p>
+
+      <nav class="menu">
+  <input id="menu-check" type="checkbox" hidden/>
+  <label id="menu-label" for="menu-check" class="unselectable" hidden>
+    <span class="icon close-icon">✕</span>
+    <span class="icon open-icon">☰</span>
+    <span class="text">Menu</span>
+  </label>
+  <ul>
+  
+  
+  <li><a href="/">主页</a></li>
+  
+  <li><a href="/about/">关于</a></li>
+  
+  <li><a href="/categories/">分类</a></li>
+  
+  <li><a href="/tags/">标签</a></li>
+  
+  
+  </ul>
+</nav>
+
+    </header>
+
+    <article class="main">
+      <header class="title">
+      
+<h1>直接初始化和拷贝初始化</h1>
+
+<h3>
+  2021-03-02</h3>
+<hr>
+
+
+      </header>
+
+
+
+<p>拷贝初始化底层是先调用构造函数创建一个临时变量，再将临时变量通过拷贝构造函数创建新变量。考虑如下过程</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>{
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+    A() { cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;default constructor&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl; }
+    A(<span style="color:#66d9ef">const</span> string<span style="color:#f92672">&amp;</span> _str)<span style="color:#f92672">:</span>str(_str) { cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;constructor&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl; }
+    <span style="color:#66d9ef">explicit</span> <span style="color:#a6e22e">A</span>(<span style="color:#66d9ef">const</span> A<span style="color:#f92672">&amp;</span> a) { cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;copy constructor&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl; }
+    string str;
+}
+
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+    A a1;       <span style="color:#75715e">// direct initialiazation
+</span><span style="color:#75715e"></span>    A a2(string(<span style="color:#e6db74">&#34;hi&#34;</span>));  <span style="color:#75715e">//  direct initialiazation
+</span><span style="color:#75715e"></span>    A a3 <span style="color:#f92672">=</span> string(<span style="color:#e6db74">&#34;hi&#34;</span>); <span style="color:#75715e">// error, string(&#34;hi&#34;) can&#39;t
+</span><span style="color:#75715e"></span>                         <span style="color:#75715e">// implicit convert to A
+</span><span style="color:#75715e"></span>                         <span style="color:#75715e">// (copy initialiazation)
+</span><span style="color:#75715e"></span>    A a4 <span style="color:#f92672">=</span> a2;           <span style="color:#75715e">// the same as above
+</span><span style="color:#75715e"></span>                         <span style="color:#75715e">// a2 can&#39;t implicit convert to A
+</span><span style="color:#75715e"></span>                         <span style="color:#75715e">// by call copy constructor
+</span><span style="color:#75715e"></span>}
+</code></pre></div>
+
+  <footer>
+  
+<nav class="post-nav">
+  <span class="nav-prev">&larr; <a href="/post/2021/01/06/%E5%9C%A8linux%E4%B8%AD%E5%BC%80%E5%90%AFsamba%E6%9C%8D%E5%8A%A1/">在linux中开启samba服务</a></span>
+  <span class="nav-next"></span>
+</nav>
+
+
+
+
+
+<script src="//yihui.org/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script async src="//yihui.org/js/center-img.js"></script>
+
+  
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/languages/tex.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/languages/c.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/languages/c&#43;&#43;.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/languages/python.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/languages/shell.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/languages/markdown.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+  
+  <hr>
+  <div class="copyright">© <a href="https://excelkks.github.io">KKS</a> 2020 | <a href="https://github.com/excelkks">Github</a> | <a href="mailto:excelkks@hotmail.com">E-Mail</a></div>
+  
+  </footer>
+  </article>
+  
+  </body>
+</html>
+
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
