@@ -27,7 +27,7 @@ state = np.random.get_state() np.random.shuffle(dataset_images) # 保证打乱�
       
       <guid>/post/2020/12/09/jupyter-notebook/</guid>
       <description>在本地使用服务器上的jupyter-notebook
- 在服务器端开启  jupyter notebook --no-browser --port=9009 在本地端  ssh -N -f -L localhost:9008:localhost:9009 user@server-ip </description>
+在服务器端开启 jupyter notebook --no-browser --port=9009 在本地端 ssh -N -f -L localhost:9008:localhost:9009 user@server-ip </description>
     </item>
     
   </channel>

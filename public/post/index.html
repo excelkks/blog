@@ -30,44 +30,21 @@
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/fonts.css" />
     <link rel="stylesheet" href="/css/custom.css" />
-<script type="text/javascript"
-        async
-        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-MathJax.Hub.Config({
-  tex2jax: {
-    inlineMath: [['$','$'], ['\\(','\\)']],
-    displayMath: [['$$','$$'], ['\[\[','\]\]']],
-    processEscapes: true,
-    processEnvironments: true,
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-    TeX: { equationNumbers: { autoNumber: "AMS" },
-         extensions: ["AMSmath.js", "AMSsymbols.js"] }
-  }
-});
-</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
 
 <script>
-
-MathJax.Hub.Queue(function() {
-    
-    
-    
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i = 0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-});
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+            delimiters: [
+                {left: "$$", right: "$$", display: true},
+                {left: "$", right: "$", display: false}
+            ]
+        });
+    });
 </script>
-
-<style>
-code.has-jax {
-    font: inherit;
-    font-size: 100%;
-    background: inherit;
-    border: inherit;
-    color: #515151;
-}
-</style>
 
 <script>
   (function(d) {
@@ -134,6 +111,56 @@ code.has-jax {
 
 
 <ul>
+  
+  <li>
+    <span class="date">2022-10-09</span>
+    <a href="/post/2022/10/09/c-%E7%9F%A5%E8%AF%86/">C&#43;&#43;知识</a>
+  </li>
+  
+  <li>
+    <span class="date">2022-10-08</span>
+    <a href="/post/2022/10/08/vim-tips/">vim tips</a>
+  </li>
+  
+  <li>
+    <span class="date">2022-01-22</span>
+    <a href="/post/2022/01/22/sklearn%E4%B8%AD%E7%9A%84%E6%A8%A1%E5%9E%8B/">Sklearn中的模型</a>
+  </li>
+  
+  <li>
+    <span class="date">2022-01-21</span>
+    <a href="/post/2022/01/21/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/">机器学习基础</a>
+  </li>
+  
+  <li>
+    <span class="date">2022-01-20</span>
+    <a href="/post/2022/01/20/%E7%9B%B8%E5%85%B3%E7%B3%BB%E6%95%B0/">相关系数</a>
+  </li>
+  
+  <li>
+    <span class="date">2022-01-19</span>
+    <a href="/post/2022/01/19/python%E4%B8%AD%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9B%B8%E5%85%B3%E7%9A%84%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95/">Python中机器学习相关的基础用法</a>
+  </li>
+  
+  <li>
+    <span class="date">2022-01-19</span>
+    <a href="/post/2022/01/19/norm/">Norm</a>
+  </li>
+  
+  <li>
+    <span class="date">2021-10-08</span>
+    <a href="/post/2021/10/08/%E5%9C%A8%E7%BE%A4%E6%99%96docker%E4%B8%AD%E5%AE%89%E8%A3%85jellyfin/">在群晖docker中安装jellyfin</a>
+  </li>
+  
+  <li>
+    <span class="date">2021-10-08</span>
+    <a href="/post/2021/10/08/%E5%B0%86%E7%BE%A4%E6%99%96%E4%B8%8A%E7%9A%84http%E6%9C%8D%E5%8A%A1%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E4%B8%BAhttps/">将群晖上的http服务反向代理为https</a>
+  </li>
+  
+  <li>
+    <span class="date">2021-10-05</span>
+    <a href="/post/2021/10/05/%E7%BB%99%E7%BE%A4%E6%99%96%E6%B7%BB%E5%8A%A0ssl%E8%AF%81%E4%B9%A6/">给群晖添加ssl证书</a>
+  </li>
   
   <li>
     <span class="date">2021-03-02</span>

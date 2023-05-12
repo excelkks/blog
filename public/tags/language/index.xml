@@ -49,11 +49,13 @@ torch.autograd.Function 自定义一个计算过程，并且定义其反向传�
       <guid>/post/2020/12/18/pytorch%E5%9F%BA%E7%A1%80/</guid>
       <description>[toc]
 Tensor的创建 tensor是基本的数据类型，基本的创建方式有
- torch.empty(5, 3) 未初始化的tensor, 里面的值为内存中原有的值 torch.randn(5,3) 创建tensor，并随机初始化 torch.zeros(5, 3, dtype=torch.long) 创建tensor，并初始化为0，指定数据类型 torch.tensor([5.5, 3])创建tensor，并直接值初始化  除了上述的创建方式，还有可以利用已经存在的tensor来创建，假设现有x = torch.zeros(5,3, dtype=torch.float32)，那么，可以根据以下方式创建
- x.new_ones(5,3) 创建tensor，并值初始化为0，除了shape外，其他属性与x一致 torch.randn_like(x, dtype=torch.float) 创建tensor，随机初始化值，除了明确指定的属性type=torch.float外，其他属性与x一致  Operations 加法   直接加
-x = torch.randn(5, 3) y = torch.randn(5, 3) # 直接加 result1 = x + y   函数方法
-# 结果赋值到result2 result2 = torch.add(x, y) # 预先指定结果保存到变量 torch.add(x, y, out=result3)   立地加(in-place)
-# 立地(in-place)加，结果直接加到被加数中, 一般立地加的函数都以_结束， # 例如x.copy_(y), x.</description>
+torch.empty(5, 3) 未初始化的tensor, 里面的值为内存中原有的值 torch.randn(5,3) 创建tensor，并随机初始化 torch.zeros(5, 3, dtype=torch.long) 创建tensor，并初始化为0，指定数据类型 torch.tensor([5.5, 3])创建tensor，并直接值初始化 除了上述的创建方式，还有可以利用已经存在的tensor来创建，假设现有x = torch.zeros(5,3, dtype=torch.float32)，那么，可以根据以下方式创建
+x.new_ones(5,3) 创建tensor，并值初始化为0，除了shape外，其他属性与x一致 torch.randn_like(x, dtype=torch.float) 创建tensor，随机初始化值，除了明确指定的属性type=torch.float外，其他属性与x一致 Operations 加法 直接加
+x = torch.randn(5, 3) y = torch.randn(5, 3) # 直接加 result1 = x + y 函数方法
+# 结果赋值到result2 result2 = torch.add(x, y) # 预先指定结果保存到变量 torch.add(x, y, out=result3) 立地加(in-place)
+# 立地(in-place)加，结果直接加到被加数中, 一般立地加的函数都以_结束， # 例如x.copy_(y), x.t_() y.add_(x) 索引 可以使用标准的类似numpy的索引。例如x[:, 1]
+resize resize或者reshape一个tensor，可以使用函数torch.view，例如
+x = torch.randn(4, 4) y = x.</description>
     </item>
     
     <item>
@@ -65,11 +67,13 @@ x = torch.randn(5, 3) y = torch.randn(5, 3) # 直接加 result1 = x + y   函数
       <description>使用GPU 为了避免占用全部GPU，需要加上
 import os os.environ[&amp;#39;CUDA_DEVICES_ORDER&amp;#39;] = &amp;#39;PCI_BUS_ID&amp;#39; os.environ[&amp;#39;CUDA_VISIBLE_DEVICES&amp;#39;] = &amp;#39;0&amp;#39; config = tf.ConfigProto() #config.gpu_options.per_process_gpu_memory_fraction = 0.9 config.gpu_options.allow_growth = True tf.truncated_normal_initializer
 生成截断正态分布的初始化器类
- 参数  mean: 分布的均值 stddev: standard deviation，标准差 seed: 随机种子 dtype: 数据类型，只能是float的类型，可选位数    tf.get_variable()
+参数 mean: 分布的均值 stddev: standard deviation，标准差 seed: 随机种子 dtype: 数据类型，只能是float的类型，可选位数 tf.get_variable()
 获取一个变量或者创建一个新的变量
- 重要参数  shape: list类型，是指变量的shape Initializer: 用于生成变量的初始化器    tf.nn.conv2d()
+重要参数 shape: list类型，是指变量的shape Initializer: 用于生成变量的初始化器 tf.nn.conv2d()
 2维卷积函数，列举主要参数tf.nn.conv2d(input, filter=None, strides=None, paddig=None, data_format=&amp;lsquo;NHWC&amp;rsquo;)。
- 重要参数  input: 输入4-D的Tensor，数据格式只能是half,bfloat16,float32,float64 filter: 卷积核，也是一个4-D tensor，数据格式必须与input一样 strides: 移动步长，可以是长度为1,2,4的list，长度为1时，表示宽高方向的移动步长，并且一致。长度为2时，分别指定宽高方向的移动步长。长度为4时，设定根据data_format指定的位置对应方向移动步长。 padding: &amp;lsquo;VALID&amp;rsquo;表示不填充， SAME&amp;rsquo;表示填充。填充方式根据filter而定，如果filter的一个维度上的长度为奇数，则在该维度起始处和结束处填充0，如果为偶数则在结束处填充0。    一般来说，input的各个维度为[batch, in_height, in_width, in_channels]，filter的各个维度为 [filter_height, filter_width, in_channels, out_channels]</description>
+重要参数 input: 输入4-D的Tensor，数据格式只能是half,bfloat16,float32,float64 filter: 卷积核，也是一个4-D tensor，数据格式必须与input一样 strides: 移动步长，可以是长度为1,2,4的list，长度为1时，表示宽高方向的移动步长，并且一致。长度为2时，分别指定宽高方向的移动步长。长度为4时，设定根据data_format指定的位置对应方向移动步长。 padding: &amp;lsquo;VALID&amp;rsquo;表示不填充， SAME&amp;rsquo;表示填充。填充方式根据filter而定，如果filter的一个维度上的长度为奇数，则在该维度起始处和结束处填充0，如果为偶数则在结束处填充0。 一般来说，input的各个维度为[batch, in_height, in_width, in_channels]，filter的各个维度为 [filter_height, filter_width, in_channels, out_channels]
+初始化变量 变量需要初始化，初始化方法有单独初始化和全局初始化。
+单独初始化 v1 = tf.Variable(tf.random_normal([2, 3], stddev=2)) v2 = tf.</description>
     </item>
     
   </channel>

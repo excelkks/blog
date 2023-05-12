@@ -49,11 +49,13 @@ torch.autograd.Function 自定义一个计算过程，并且定义其反向传�
       <guid>/post/2020/12/18/pytorch%E5%9F%BA%E7%A1%80/</guid>
       <description>[toc]
 Tensor的创建 tensor是基本的数据类型，基本的创建方式有
- torch.empty(5, 3) 未初始化的tensor, 里面的值为内存中原有的值 torch.randn(5,3) 创建tensor，并随机初始化 torch.zeros(5, 3, dtype=torch.long) 创建tensor，并初始化为0，指定数据类型 torch.tensor([5.5, 3])创建tensor，并直接值初始化  除了上述的创建方式，还有可以利用已经存在的tensor来创建，假设现有x = torch.zeros(5,3, dtype=torch.float32)，那么，可以根据以下方式创建
- x.new_ones(5,3) 创建tensor，并值初始化为0，除了shape外，其他属性与x一致 torch.randn_like(x, dtype=torch.float) 创建tensor，随机初始化值，除了明确指定的属性type=torch.float外，其他属性与x一致  Operations 加法   直接加
-x = torch.randn(5, 3) y = torch.randn(5, 3) # 直接加 result1 = x + y   函数方法
-# 结果赋值到result2 result2 = torch.add(x, y) # 预先指定结果保存到变量 torch.add(x, y, out=result3)   立地加(in-place)
-# 立地(in-place)加，结果直接加到被加数中, 一般立地加的函数都以_结束， # 例如x.copy_(y), x.</description>
+torch.empty(5, 3) 未初始化的tensor, 里面的值为内存中原有的值 torch.randn(5,3) 创建tensor，并随机初始化 torch.zeros(5, 3, dtype=torch.long) 创建tensor，并初始化为0，指定数据类型 torch.tensor([5.5, 3])创建tensor，并直接值初始化 除了上述的创建方式，还有可以利用已经存在的tensor来创建，假设现有x = torch.zeros(5,3, dtype=torch.float32)，那么，可以根据以下方式创建
+x.new_ones(5,3) 创建tensor，并值初始化为0，除了shape外，其他属性与x一致 torch.randn_like(x, dtype=torch.float) 创建tensor，随机初始化值，除了明确指定的属性type=torch.float外，其他属性与x一致 Operations 加法 直接加
+x = torch.randn(5, 3) y = torch.randn(5, 3) # 直接加 result1 = x + y 函数方法
+# 结果赋值到result2 result2 = torch.add(x, y) # 预先指定结果保存到变量 torch.add(x, y, out=result3) 立地加(in-place)
+# 立地(in-place)加，结果直接加到被加数中, 一般立地加的函数都以_结束， # 例如x.copy_(y), x.t_() y.add_(x) 索引 可以使用标准的类似numpy的索引。例如x[:, 1]
+resize resize或者reshape一个tensor，可以使用函数torch.view，例如
+x = torch.randn(4, 4) y = x.</description>
     </item>
     
   </channel>
