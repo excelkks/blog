@@ -51,7 +51,7 @@ $P^2 = A(A^TA)^{-1}A^TA(A^TA)^{-1}A^T = A(A^TA)^{-1}A^T$
 
 Given batch of points close to but not on the line. Suppose those points are $(1, 1)$, $ (2,2)$, $(3,2)$. Find $C, D$ makes those points closest to the line $C+Dt = b$.
 
-$\left[\matrix{1 & 1 \\ 1 & 2 \\ 1 & 3}\right]\left[\matrix{C\\D}\right]=\left[\matrix{1\\2\\3}\right] \to A\left[\matrix{C\\D}\right]=b$
+$$\left[\begin{matrix}1 & 1 \\ 1 & 2 \\ 1 & 3\end{matrix}\right]\left[\begin{matrix}C\\D\end{matrix}\right]=\left[\begin{matrix}1\\2\\3\end{matrix}\right] \to A\left[\begin{matrix}C\\D\end{matrix}\right]=b$$
 
 No solution to this equation. So we Minimize the $||Ax - b||^2 = ||e||^2$, $||e||^2 = e_1^2+e_2^2+e_3^2$
 

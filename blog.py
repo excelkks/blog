@@ -38,11 +38,12 @@ def cvtbs(src):
 
 
 def cvtfile(src, dst):
-    org_f = open(src, 'r')
+    print(src)
+    org_f = open(src, 'r', encoding="utf-8")
     original_file = org_f.read()
     org_f.close()
     new_file = cvtbs(original_file)
-    new_f = open(dst, 'w')
+    new_f = open(dst, 'w', encoding="utf-8")
     new_f.write(new_file)
     new_f.close()
 
